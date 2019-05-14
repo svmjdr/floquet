@@ -62,8 +62,8 @@ def run_single_simulation(n_bar, N_max_a, N_max_b, p,
     Run a single simulation.
 
     :param n_bar: Mean number of photons at $\omega_p$ in the pump.
-    :param N_max_a: Truncature of the cavity Fock space.
-    :param N_max_b: Truncature of the transmon eigenstates space.
+    :param N_max_a: Truncation of the cavity Fock space.
+    :param N_max_b: Truncation of the transmon eigenstates space.
     :param p: Dictionary of parameters to use.
     :param compute_kerr: Whether Kerr should be computed from hamiltonian or
         not.
@@ -71,7 +71,7 @@ def run_single_simulation(n_bar, N_max_a, N_max_b, p,
     :param prefix: A prefix to prepend to output files.
     :return: Dumped data.
     """
-    # Use custom logging format, to show truncatures
+    # Use custom logging format, to show truncations
     LOGGER = logging.getLogger('(%f, %d, %d)' % (n_bar, N_max_a, N_max_b))
     LOGGER.setLevel(logging.DEBUG)
     LOGGER.debug('Parameters are: %s', p)

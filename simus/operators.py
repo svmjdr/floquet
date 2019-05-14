@@ -98,10 +98,10 @@ def build_unshunted_hamiltonian(N_max_a, N_max_b, N_max_charge, epsilon_p, p):
     Build operators for simulation of a transmon in a cavity in the unshunted
     case.
 
-    :param N_max_a: Truncature on the cavity Fock space.
-    :param N_max_b: Truncature on the transmon eigenstates space.
+    :param N_max_a: Truncation on the cavity Fock space.
+    :param N_max_b: Truncation on the transmon eigenstates space.
     :param N_max_charge: To compute the transmon eigenvectors, we use the
-        representation in the charge states space. This is the truncature in
+        representation in the charge states basis. This is the truncation in
         this space and should be really large (indices range from -N_max_charge
         to +N_max_charge).
     :param epsilon_p: Pump amplitude.
@@ -260,8 +260,8 @@ def build_shunted_hamiltonian(N_max_a, N_max_b, epsilon_p, p):
     Build operators for simulation of a transmon in a cavity in the unshunted
     case.
 
-    :param N_max_a: Truncature on the cavity Fock space.
-    :param N_max_b: Truncature on the transmon eigenstates space.
+    :param N_max_a: Truncation on the cavity Fock space.
+    :param N_max_b: Truncation on the transmon eigenstates space.
     :param epsilon_p: Pump amplitude.
     :param p: Dict of parameters values.
     :returns: A tuple of H, args, H_0_cavity and c_ops.
@@ -346,15 +346,15 @@ def build_hamiltonian(N_max_a, N_max_b, n_bar, p,
     """
     Build operators for simulation of a transmon in a cavity.
 
-    :param N_max_a: Truncature on the cavity Fock space.
-    :param N_max_b: Truncature on the transmon eigenstates space.
+    :param N_max_a: Truncation on the cavity Fock space.
+    :param N_max_b: Truncation on the transmon eigenstates space.
     :param n_bar: Mean number of photons in the pump, at $\omega_p$.
     :param p: Dict of parameters values.
     :param logger: A logger object.
     :param out_directory: Where to output images.
     :param compute_kerr: Whether Kerr should be computed or not.
     :param N_max_charge: To compute the transmon eigenvectors, we use the
-        representation in the charge states space. This is the truncature in
+        representation in the charge states space. This is the truncation in
         this space and should be really large (indices range from -N_max_charge
         to +N_max_charge).
     :returns: A tuple of H, args, c_ops and computed params.

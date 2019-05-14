@@ -217,7 +217,7 @@ def load_data(dir):
             N_max_b = data['N_max_b']
             if n_bar in loaded_data:
                 # If some file was already loaded for this n_bar value, keep
-                # the largest truncatures
+                # the largest truncations
                 previous_data = loaded_data[n_bar]
                 if (
                     N_max_a < previous_data['N_max_a'] and

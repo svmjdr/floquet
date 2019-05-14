@@ -40,9 +40,9 @@ single_parser = subparsers.add_parser(
 single_parser.add_argument('n_bar', type=float,
                            help='Mean number of photon in the pump drive.')
 single_parser.add_argument('N_max_a', type=int,
-                           help='Truncature of the Fock space of the cavity.')
+                           help='Truncation of the Fock space of the cavity.')
 single_parser.add_argument('N_max_b', type=int,
-                           help='Truncature of the transmon eigenspace.')
+                           help='Truncation of the transmon eigenspace.')
 single_parser.add_argument('params_file',
                            help='File to load parameters from.')
 
@@ -53,9 +53,9 @@ run_parser = subparsers.add_parser(
           'plotting steadystate.')
 )
 run_parser.add_argument('N_max_a', type=int,
-                        help='Truncature of the Fock space of the cavity.')
+                        help='Truncation of the Fock space of the cavity.')
 run_parser.add_argument('N_max_b', type=int,
-                        help='Truncature of the transmon eigenspace.')
+                        help='Truncation of the transmon eigenspace.')
 run_parser.add_argument('n_bar_min', type=float,
                         help='Lower mean number of photon in the pump drive.')
 run_parser.add_argument('n_bar_max', type=float,
@@ -73,9 +73,9 @@ f_energies_parser = subparsers.add_parser(
     help='Compute Floquet quasi-energies on a range of n_bar values.'
 )
 f_energies_parser.add_argument('N_max_a', type=int,
-                        help='Truncature of the Fock space of the cavity.')
+                        help='Truncation of the Fock space of the cavity.')
 f_energies_parser.add_argument('N_max_b', type=int,
-                        help='Truncature of the transmon eigenspace.')
+                        help='Truncation of the transmon eigenspace.')
 f_energies_parser.add_argument('n_bar_min', type=float,
                         help='Lower mean number of photon in the pump drive.')
 f_energies_parser.add_argument('n_bar_max', type=float,

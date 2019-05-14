@@ -24,8 +24,8 @@ def plot_f_energies(n_bar_list, N_max_a, N_max_b, params):
 
     :param n_bar_list: List of mean number of photons at $\omega_p$ in the
         pump.
-    :param N_max_a: Truncature of the cavity Fock space.
-    :param N_max_b: Truncature of the transmon eigenstates space.
+    :param N_max_a: Truncation of the cavity Fock space.
+    :param N_max_b: Truncation of the transmon eigenstates space.
     :param params: Dictionary of parameters to use.
     :return: A list of Floquet quasi-energies, for each pump power.
 
@@ -81,14 +81,14 @@ def compute_single_f_energies(n_bar, N_max_a, N_max_b, p,
     Compute Floquet quasi-energies for a given pump power.
 
     :param n_bar: Mean number of photons at $\omega_p$ in the pump.
-    :param N_max_a: Truncature of the cavity Fock space.
-    :param N_max_b: Truncature of the transmon eigenstates space.
+    :param N_max_a: Truncation of the cavity Fock space.
+    :param N_max_b: Truncation of the transmon eigenstates space.
     :param p: Dictionary of parameters to use.
     :param out_directory: Directory where to output files.
     :param prefix: A prefix to prepend to output files.
     :return: Floquet quasi-energies.
     """
-    # Use custom logging format, to show truncatures
+    # Use custom logging format, to show truncations
     LOGGER = logging.getLogger('(%f, %d, %d)' % (n_bar, N_max_a, N_max_b))
     LOGGER.setLevel(logging.DEBUG)
     LOGGER.debug('Parameters are: %s', p)
