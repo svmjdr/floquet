@@ -137,7 +137,7 @@ def build_unshunted_hamiltonian(N_max_a, N_max_b, N_max_charge, epsilon_p, p):
     # Matrix to pass from charge states basis to transmon basis. Each column is
     # a transmon eigenstate expressed in the charge states basis.
     change_basis_matrix = qutip.Qobj(
-        np.column_stack(x.full() for x in eigenvec_tr)
+        np.column_stack([x.full() for x in eigenvec_tr])
     )
     # Then, rewrite transmon operators in this basis…
     N_ch_eigv_basis = change_basis(N_ch, change_basis_matrix)
@@ -175,10 +175,10 @@ def build_unshunted_hamiltonian(N_max_a, N_max_b, N_max_charge, epsilon_p, p):
         -1.0 * p['epsilon_g'] * epsilon_p *
         p['omega_a'] / p['omega_p'] / (p['omega_p']**2 - p['omega_a']**2)
     )
+    def H_1_coef(t, args): return np.cos(args['oscillating_prefactor'] * np.sin(args['omega_p'] * t))
+    def H_2_coef(t, args): return np.sin(args['oscillating_prefactor'] * np.sin(args['omega_p'] * t))
     H_1 = -1.0 * p['epsilon_j'] * cos_phi_tensor
-    H_1_coef = 'cos(oscillating_prefactor * sin(omega_p * t))'
     H_2 = p['epsilon_j'] * sin_phi_tensor
-    H_2_coef = 'sin(oscillating_prefactor * sin(omega_p * t))'
     # Complete QuTiP hamiltonian object
     args = {
         'oscillating_prefactor': oscillating_prefactor,
