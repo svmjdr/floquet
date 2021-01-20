@@ -103,7 +103,7 @@ def floquet_modes(H, T, args=None, sort=False, U=None):
     return [evecs[o] for o in order], e_quasi[order]
 
 
-def floquet_modes_table(f_modes_0, f_energies, tlist, H, T, args=None):
+def floquet_modes_table(f_modes_0, f_energies, tlist, H, T, c_op, args=None):
     """
     Pre-calculate the Floquet modes for a range of times spanning the floquet
     period. Can later be used as a table to look up the floquet modes for
@@ -148,7 +148,7 @@ def floquet_modes_table(f_modes_0, f_energies, tlist, H, T, args=None):
     opt.rhs_reuse = True
 
     for n, f_mode in enumerate(f_modes_0):
-        output = mesolve(H, f_mode, tlist_period, [], [], args, opt)
+        output = mesolve(H, f_mode, tlist_period, c_op, [], args, opt)
         for t_idx, f_state_t in enumerate(output.states):
             f_modes_table_t[t_idx].append(
                 f_state_t * exp(1j * f_energies[n] * tlist_period[t_idx]))
@@ -297,7 +297,7 @@ def floquet_master_equation_rates(f_modes_0, f_energies, c_op, H, T,
 
     if f_modes_table_t is None:
         f_modes_table_t = floquet_modes_table(f_modes_0, f_energies,
-                                              np.linspace(0, T, nT + 1), H, T,
+                                              np.linspace(0, T, nT + 1), H, T, c_op
                                               args)
 
     c_op = c_op.full()
