@@ -275,7 +275,8 @@ def plot_article_pops(x, y, z, ax,
         x, y, z,
         cmap=custom_mpl.POPULATIONS_CMAP,
         vmin=0,
-        vmax=1.0
+        vmax=1.0,
+        shading='nearest'
     )
     ax.yaxis.set_minor_locator(matplotlib.ticker.AutoMinorLocator(n=2))
     if eyeguide:
