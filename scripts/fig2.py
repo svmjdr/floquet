@@ -1,9 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
+
 """
 Plot Fig.2 from paper.
 """
-from __future__ import print_function, unicode_literals
 
 import os
 import sys
@@ -89,7 +87,7 @@ def main(out_directory, overlaps_threshold):
             transmon_pops_axis,
             ylabel="Transmon eigenstates",
             eyeguide=mean_transmon_excitations,
-            eyeguide_color="#740000"
+            eyeguide_color="r"
         )
         fig.colorbar(colorbar, cax=colorbar_axis, orientation="horizontal")
 
