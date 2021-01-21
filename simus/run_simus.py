@@ -3,7 +3,6 @@
 Main simulations procedures, to run a single simulation or a batch of
 simulations using multiple processes.
 """
-from __future__ import absolute_import, print_function, unicode_literals
 
 import logging
 import multiprocessing
@@ -120,35 +119,11 @@ def run_single_simulation(n_bar, N_max_a, N_max_b, p,
     psi_0 = (H[0] + H[1][0]).groundstate()[1]  # Real ground state
     # Find its decomposition on Floquet modes at t = 0
     f_coeff = floquet.floquet_state_decomposition(f_modes_0, f_energies, psi_0)
-    # Plot probabilities on each Floquet mode
-    tools.save_probability_distribution_figure(
-        f_coeff,
-        save_path=os.path.join(
-            out_directory,
-            '%sinitial_state_floquet_modes_nbar_%f.png' % (prefix, n_bar)
-        ),
-        xlabel='Floquet mode index',
-        ylabel='Probability',
-        title='Decomposition of initial state on Floquet modes',
-    )
-    # Plot the probability distribution of the Floquet mode with the most
+    
     # significant overlap with psi_0
     floquet_overlaps = tools.compute_probabilities(f_coeff)
     most_overlapping_floquet_index = np.argmax(floquet_overlaps)
-    tools.save_probability_distribution_figure(
-        f_modes_0[most_overlapping_floquet_index],
-        save_path=os.path.join(
-            out_directory,
-            '%smost_overlapping_floquet_mode_initial_nbar_%f.png' % (prefix,
-                                                                     n_bar)
-        ),
-        xlabel='Index in the Fock tensor transmon eigenstates space.',
-        ylabel='Probability',
-        title=(
-            r'Most overlapping Floquet mode (%d) at $t=0$ with $\left|\Psi(0)\right>$' %
-            most_overlapping_floquet_index
-        )
-    )
+    
 
     LOGGER.info('Computing rate matrices…')
     _, X, _, Amat = floquet.floquet_master_equation_rates(
@@ -190,46 +165,11 @@ def run_single_simulation(n_bar, N_max_a, N_max_b, p,
         is_checked = False
         LOGGER.warning('Steadystates checks failed.')
 
-    # Plot steadystate in Floquet basis
-    tools.save_pops_figure(
-        steadystate.diag(),
-        save_path=os.path.join(
-            out_directory,
-            '%ssteadystate_on_floquet_modes_nbar_%f.png' % (prefix, n_bar)
-        ),
-        xlabel='Floquet mode index',
-        ylabel='Probability',
-        title='Decomposition of steadystate on Floquet modes'
-    )
-    # Plot most overlapping Floquet mode in the steadystate
+    
     most_overlapping_floquet_index = np.argmax(steadystate.diag())
-    tools.save_probability_distribution_figure(
-        f_modes_0[most_overlapping_floquet_index],
-        save_path=os.path.join(
-            out_directory,
-            ('%smost_overlapping_floquet_mode_steadystate_nbar_%f.png' %
-             (prefix, n_bar))
-        ),
-        xlabel='Index in the Fock tensor transmon eigenstates space.',
-        ylabel='Probability',
-        title=(
-            r'Most overlapping Floquet mode (%d) from the steadystate' %
-            most_overlapping_floquet_index
-        )
-    )
-    # Plot steadystate in tensor basis
+    
     real_density_matrix = floquet.floquet_basis_transform(
         f_modes_0, steadystate
-    )
-    tools.save_pops_figure(
-        real_density_matrix.diag(),
-        save_path=os.path.join(
-            out_directory,
-            '%ssteadystate_on_tensor_modes_nbar_%f.png' % (prefix, n_bar)
-        ),
-        xlabel='Index in the Fock tensor transmon eigenstates space.',
-        ylabel='Probability',
-        title='Decomposition of steadystate on tensor modes'
     )
 
     LOGGER.info('Dumping data…')
